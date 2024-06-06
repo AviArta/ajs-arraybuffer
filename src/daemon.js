@@ -5,5 +5,22 @@ export default class Daemon extends Character {
         super(name, "Daemon");
         this.attack = 10;
         this.defence = 40;
+        this.stone = null;
     };
+    
+    set attack(param) {
+        
+      }
+    
+    get attack() {
+        return this.attack;
+    }
+
+    set stoned(param) {
+        
+      }
+    
+      get stoned() {
+        return this.stone;
+      }
 }
