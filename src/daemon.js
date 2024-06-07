@@ -1,26 +1,30 @@
 import Character from "./character";
 
 export default class Daemon extends Character {
-    constructor(name) {
+    constructor(name, stone, interval) {
         super(name, "Daemon");
         this.attack = 10;
         this.defence = 40;
-        this.stone = null;
+        this.stone = stone;
+        this.interval = interval;
     };
-    
-    set attack(param) {
-        
-      }
-    
-    get attack() {
-        return this.attack;
+
+    set attack(value) {
+      this.changeAttack = value;
     }
 
-    set stoned(param) {
-        
+    get attack() {
+      let attack = this.changeAttack;
+
+      attack -= this.changeAttack * ((this.interval - 1) / 10);
+
+      if (this.stone) {
+          attack -= Math.log2(this.interval) * 5;
       }
-    
-      get stoned() {
-        return this.stone;
+      this.attack = attack;
+      if (attack < 0) {
+        attack = 0;
       }
+      return Math.floor(attack);
+    }
 }
